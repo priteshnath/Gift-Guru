@@ -19,7 +19,7 @@ function WelcomePage() {
                     loading='lazy'
                     className='absolute h-[70vh] w-full z-[-10] object-contain welcome-image top-10' />
                 <div className='absolute left-1/2 transform -translate-x-1/2 bottom-10'>
-                    <h1 className="text-5xl font-bold mb-4 pt-20 text-white items-center">Welcome to Gift Guruji!</h1>
+                    <h1 className="text-5xl font-bold mb-4 pt-20 text-white items-center">Welcome to Gift Guru </h1>
                     <p className="mb-4 text-center text-white text-xl">Your personal assistant for finding the perfect gift.</p>
                     <div className='w-full flex items-center justify-center'>
                         <button

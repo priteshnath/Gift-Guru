@@ -27,7 +27,7 @@ function ChatPage() {
 
             const data = await response.json();
             console.log(data);
-            
+
             const productCards = data.data.products.slice(0, 5).map(product => ({
                 name: product.product_title,
                 image: product.product_photo,
@@ -76,7 +76,16 @@ function ChatPage() {
                                 <div
                                     className={`${message.sender === 'user' ? 'bg-blue-700 text-white' : ' bg-white text-black'} p-2 m-2 rounded-lg max-w-xs`}
                                 >
-                                    {message.text}
+
+                                    {message.sender === 'user' ? (
+                                        <div>{message.text}</div>
+                                    ) : (
+                                        <div>
+                                            <img src="./public/images/GIFT GURU logo.png" alt="botimg" className="w-8 h-8 inline-block  object-cover pr-2" />
+                                            {message.text}
+                                        </div>
+                                    )}
+
                                     {message.products && message.products.length > 0 && (
                                         <div className="">
                                             {message.products.map((product, idx) => (
