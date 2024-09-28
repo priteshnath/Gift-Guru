@@ -1,0 +1,12 @@
+.welcome-image {
+    animation: zoom-out 5s none alternate; /* Animation plays once */
+}
+
+@keyframes zoom-out {
+    0% {
+        transform: scale(0.1); /* Start from scale 0 */
+    }
+    100% {
+        transform: scale(1); /* End at scale 1 (original size) */
+    }
+}
