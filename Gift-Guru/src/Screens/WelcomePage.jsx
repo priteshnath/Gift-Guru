@@ -16,6 +16,7 @@ function WelcomePage() {
             <div className='bg-btnColor absolute h-full w-full z-[-11]'>
                 <Navbar />
                 <img src="./public/images/GIFT GURU logo.png" alt="Not found"
+                    loading='lazy'
                     className='absolute h-[70vh] w-full z-[-10] object-contain welcome-image top-10' />
                 <div className='absolute left-1/2 transform -translate-x-1/2 bottom-10'>
                     <h1 className="text-5xl font-bold mb-4 pt-20 text-white items-center">Welcome to Gift Guruji!</h1>

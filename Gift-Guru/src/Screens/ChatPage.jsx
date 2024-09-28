@@ -26,6 +26,8 @@ function ChatPage() {
             }
 
             const data = await response.json();
+            console.log(data);
+            
             const productCards = data.data.products.slice(0, 5).map(product => ({
                 name: product.product_title,
                 image: product.product_photo,
@@ -46,10 +48,9 @@ function ChatPage() {
         const userMessage = { text: input, sender: 'user' };
         setMessages((prevMessages) => [...prevMessages, userMessage]);
 
-        // Fetch products and add them to messages
         const productCards = await fetchProducts(input);
         const botMessage = { products: productCards, sender: 'bot' };
-        
+
         setMessages((prevMessages) => [...prevMessages, botMessage]);
         setInput('');
     };
@@ -62,52 +63,69 @@ function ChatPage() {
 
     return (
         <>
-            <Navbar />
-            <div className="flex-grow p-4 overflow-y-auto pt-20">
-                {messages.map((message, index) => (
-                    <div
-                        key={index}
-                        className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-                    >
-                        <div
-                            className={`${message.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'} p-2 m-2 rounded-lg max-w-xs`}
-                        >
-                            {message.text}
-                            {message.products && message.products.length > 0 && (
-                                <div className="product-cards">
-                                    {message.products.map((product, idx) => (
-                                        <div key={idx} className="product-card bg-white border border-gray-300 rounded-lg p-2 m-2">
-                                            <img src={product.image} alt={product.name} className="product-image h-24 w-24 object-cover" />
-                                            <h3 className="product-title font-semibold">{product.name}</h3>
-                                            <p className="product-price text-green-500">${product.price}</p>
-                                            <a href={product.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                                                View Product
-                                            </a>
+            <div className="bg-btnColor min-h-screen flex flex-col">
+                <Navbar />
+                <div className="flex-grow flex justify-center items-center pt-20 pb-20 ">
+                    <div className="w-4/5 max-h-full overflow-y-auto p-4 rounded-lg">
+
+                        {messages.map((message, index) => (
+                            <div
+                                key={index}
+                                className={`flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}
+                            >
+                                <div
+                                    className={`${message.sender === 'user' ? 'bg-blue-700 text-white' : ' bg-white text-black'} p-2 m-2 rounded-lg max-w-xs`}
+                                >
+                                    {message.text}
+                                    {message.products && message.products.length > 0 && (
+                                        <div className="">
+                                            {message.products.map((product, idx) => (
+                                                <div key={idx} className="
+                                                                product-card 
+                                                                bg-white border  
+                                                                rounded-lg 
+                                                                p-2 
+                                                                m-4
+                                                                mb-5
+                                                                border-black    
+                                                                min-h-48">
+
+                                                    <img src={product.image} alt={product.name} className="h-28 w-28 object-contain" />
+
+                                                    <h3 className="text-base font-semibold pt-3">{product.name}</h3>
+
+                                                    <p className="text-green-500 pt-2">{product.price}</p>
+                                                    <a href={product.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline pt-3">
+                                                        View Product
+                                                    </a>
+                                                </div>
+                                            ))}
                                         </div>
-                                    ))}
+                                    )}
                                 </div>
-                            )}
-                        </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
+                </div>
+
+                <div className="p-4 flex items-center justify-center w-full fixed bottom-0 bg-white shadow-lg">
+                    <input
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyDown}
+                        placeholder="Type your message..."
+                        className="border border-black rounded-lg w-1/2 p-2 mr-2 bg-transparent"
+                    />
+                    <button
+                        onClick={handleSendMessage}
+                        className="bg-btnColor text-white p-2 rounded-lg w-20"
+                    >
+                        Send
+                    </button>
+                </div>
             </div>
 
-            <div className="p-4 bg-gray-100 flex items-center justify-center w-full">
-                <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                    placeholder="Type your message..."
-                    className="border rounded-lg w-1/2 p-2 mr-2"
-                />
-                <button
-                    onClick={handleSendMessage}
-                    className="bg-blue-500 text-white p-2 rounded-lg w-20"
-                >
-                    Send
-                </button>
-            </div>
         </>
     );
 }

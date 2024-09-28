@@ -1,8 +1,9 @@
 const Navbar = () => {
     return (
         <>
-            <nav className="fixed top-0 left-0 w-full z-50 p-4 ">
-                <h1 className="text-2xl font-bold text-white uppercase bg-black">Gift Guruji</h1>
+            <nav className="fixed top-0 left-0 w-full z-50 pl-2">
+                <img src="./public/images/logo.png" alt="Logo img" 
+                className="w-16 h-16 object-contain"/>
             </nav>
         </>
     )
